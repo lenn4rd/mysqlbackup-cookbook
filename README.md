@@ -42,7 +42,7 @@ This cookbook installs [mysqlbackup](https://code.google.com/p/mysqlbackup/).
     <td><tt>CHANGE_THIS_PASSWORD</tt></td>
   </tr>
   <tr>
-    <td><tt>['mysqlbackup']['mysql_user']</tt></td>
+    <td><tt>['mysqlbackup']['mysql_username']</tt></td>
     <td>String</td>
     <td>the username for the MySQL user</td>
     <td><tt>backup</tt></td>

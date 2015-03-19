@@ -56,12 +56,12 @@ end
 
 # Create MySQL account if enabled
 if node['mysqlbackup']['enable_mysql']
-  mysql_database_user node['mysqlbackup']['mysql_user'] do
-    connection {
-      host: 'localhost',
+  mysql_database_user node['mysqlbackup']['mysql_username'] do
+    connection({
+      host:     'localhost',
       username: 'root',
       password: node['mysql']['server_root_password']
-    }
+    })
     password node['mysqlbackup']['mysql_password']
     database_name '*.*'
     privileges [:select, :insert, :'lock tables', :event]
@@ -73,6 +73,10 @@ if node['mysqlbackup']['enable_mysql']
     owner node['mysqlbackup']['user']
     group node['mysqlbackup']['group']
     mode '0600'
+    variables({
+      username: node['mysqlbackup']['mysql_username'],
+      password: node['mysqlbackup']['mysql_password']
+    })
   end
 end
 
